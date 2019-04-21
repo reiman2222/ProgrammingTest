@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Totals";
+}
+
+<h1>Totals</h1>
+<hr />
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script>
+window.onload = function () {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+	    animationEnabled: true,
+	    title: {
+		    text: "Ticket Totals by Location"
+	    },
+	    axisY: {
+		    title: "Tickets",
+	    },
+	    data: [{
+		    type: "column",
+		    indexLabel: "{y}",
+		    dataPoints: @Html.Raw(ViewBag.LocationTotals)
+	    }]
+    });
+    chart.render();
+
+    var chart2 = new CanvasJS.Chart("chartContainer2", {
+	    animationEnabled: true,
+	    title: {
+		    text: "Ticket Totals by Game"
+	    },
+	    axisY: {
+		    title: "Tickets",
+	    },
+	    data: [{
+		    type: "column",
+		    indexLabel: "{y}",
+		    dataPoints: @Html.Raw(ViewBag.GameTotals)
+	    }]
+    });
+    chart2.render();
+}
+    </script>
+</head>
+<body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <p><br /></p>
+    <p><br /></p>
+    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

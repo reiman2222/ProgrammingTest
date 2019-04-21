@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProgrammingTest.Models.LocationTicket>
+
+@{
+    ViewData["Title"] = "Tickets by Location";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@Html.DropDownList("Locations", (SelectList)ViewBag.DropDownValues,
+    new { @onchange = "CallChangefunc(this.value)" })
+
+<script>
+    function CallChangefunc(val) {
+        window.location.href = "/LocationTickets/Location?locId=" + val;
+    }
+</script>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlockDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketsPlayed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlockDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketsPlayed)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.LocationTicketId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.LocationTicketId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.LocationTicketId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

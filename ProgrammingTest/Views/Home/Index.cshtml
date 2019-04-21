@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+
+        <h1 class="display-4">Select Data to View</h1>
+        <hr>
+        <input type="button" value="View Ticket Sales over Time" onclick="@("window.location='" + @Url.Action("Index", "Graph") + "'");" />
+        <p></p>
+        <input type="button" value="View Total Sales" onclick="@("window.location='" + @Url.Action("Totals", "Graph") + "'");" />
+        <p></p>
+        <input type="button" value="View Game Popularity" onclick="@("window.location='" + @Url.Action("Popularity", "Graph") + "'");" />
+        <p></p>
+        <input type="button" value="Tickets Table by Location" onclick="@("window.location='" + @Url.Action("Location", "LocationTickets") + "'");" />
+        <p></p>
+        <input type="button" value="Tickets Table by Game" onclick="@("window.location='" + @Url.Action("Game", "GameTickets") + "'");" />
+        <p><p />
+        <input type="button" value="Full Tickets Table" onclick="@("window.location='" + @Url.Action("Index", "TicketFulls") + "'");" />
+
+
+    </div>

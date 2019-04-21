@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Game Popularity";
+}
+<h1>Game Popularity</h1>
+<p></p>
+@Html.DropDownList("Locations", (SelectList)ViewBag.LocationDropDown, "Select Location",
+    new { @onchange = "CallChangefunc(this.value)" })
+<p></p>
+<script>
+    function CallChangefunc(val) {
+        window.location.href = "/Graph/Popularity?locId=" + val;
+    }
+</script>
+
+
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: @Html.Raw(ViewBag.LocationName)
+	},
+	axisY: {
+		includeZero: false
+	},
+	toolTip: {
+		shared: true
+	},
+	data: [{
+		type: "pie",
+		startAngle: 180,
+		toolTipContent: "<b>{label}</b>: {y}%",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabel: "{label} - {y}%",
+		dataPoints: @Html.Raw(ViewBag.GameTicketsSold)
+	}]
+});
+chart.render();
+
+}
+</script>
+
+<body>
+    <div id="chartContainer" style="height: 550px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>

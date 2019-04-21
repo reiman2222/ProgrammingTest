@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProgrammingTest.Models.LocationTicket>
+
+@{
+    ViewData["Title"] = "Tickets by Location";
+}
+
+<h1>Tickets by Location</h1>
+
+<p></p>
+
+@Html.DropDownList("Locations", (SelectList)ViewBag.DropDownValues, "Select Location",
+    new { @onchange = "CallChangefunc(this.value)" })
+
+<p></p>
+
+<script>
+    function CallChangefunc(val) {
+        window.location.href = "/LocationTickets/Location?locId=" + val;
+    }
+</script>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlockDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketsPlayed)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlockDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketsPlayed)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

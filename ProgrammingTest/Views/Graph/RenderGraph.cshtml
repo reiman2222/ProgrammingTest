@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Graph";
+}
+
+<p>@Html.Raw(ViewBag.ErrorMessage)</p>
+
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: @Html.Raw(ViewBag.GraphName)
+	},
+	axisY: {
+		includeZero: false
+	},
+	toolTip: {
+		shared: true
+	},
+	data: [{
+		type: "line",
+		name: "Tickets",
+		showInLegend: true,
+		dataPoints: @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+}
+    </script>
+
+<input type="button" value="Go Back" onclick="@("window.location='" + @Url.Action("Index", "Graph") + "'");" />
+
+<body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+                          

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Graph";
+}
+
+<h1>Click Submit to Generate Graph</h1>
+<p></p>
+<form action="/Graph/RenderGraph" method="post">
+    <div class="column">
+        <label>From:</label>
+        <input type="date" name="StartDate" />
+    </div>
+    <div class="column">
+        <label>To:</label>
+        <input type="date" name="EndDate" />
+    </div>
+    <div class="column">
+        <label>Location:</label>
+        @Html.DropDownList("LocId", (SelectList)ViewBag.LocationDropDown)
+    </div>
+    <div class="column">
+        <label>Game:</label>
+        @Html.DropDownList("GID", (SelectList)ViewBag.GameDropDown)
+    </div>
+        <input type="submit" value="submit" />
+</form>
